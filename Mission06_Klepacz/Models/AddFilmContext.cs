@@ -11,5 +11,6 @@ namespace Mission06_Klepacz.Models
         }
 
         public DbSet<AddMovie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
