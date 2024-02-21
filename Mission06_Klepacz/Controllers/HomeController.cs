@@ -40,5 +40,10 @@ namespace Mission06_Klepacz.Controllers
 
             return View("Confirmation", response);
         }
+
+        public IActionResult MovieList()
+        {
+            return View();
+        }
     }
 }
