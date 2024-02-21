@@ -12,8 +12,8 @@ namespace Mission06_Klepacz.Models
         public int MovieId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public string CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? CategoryName { get; set; }
 
         public string Title { get; set; }
         public int Year { get; set; }

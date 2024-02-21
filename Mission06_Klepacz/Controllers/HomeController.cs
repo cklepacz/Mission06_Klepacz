@@ -26,6 +26,9 @@ namespace Mission06_Klepacz.Controllers
         [HttpGet]
         public IActionResult AddFilm() 
         {
+            ViewBag.Categories = _context.Categories
+                .ToList();
+            
             return View();
         }
 
