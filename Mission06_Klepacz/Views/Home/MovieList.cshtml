@@ -4,8 +4,10 @@
 @{
 }
 
-<table>
-    <thead class="fw-bold">
+@model List<AddMovie>
+
+<table class="table">
+    <thead>
         <tr>
             <td>Category</td>
             <td>Title</td>
@@ -18,4 +20,21 @@
             <td>Notes?</td>
         </tr>
     </thead>
+
+        @foreach (var x in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@x.CategoryName?.CategoryName</td>
+                    <td>@x.Title</td>
+                    <td>@x.Year</td>
+                    <td>@x.Director</td>
+                    <td>@x.Rating</td>
+                    <td>@x.Edited</td>
+                    <td>@x.LentTo</td>
+                    <td>@x.CopiedToPlex</td>
+                    <td>@x.Notes</td>
+                </tr>
+            </tbody>
+        }
 </table>

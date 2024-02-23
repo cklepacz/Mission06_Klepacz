@@ -43,7 +43,11 @@ namespace Mission06_Klepacz.Controllers
 
         public IActionResult MovieList()
         {
-            return View();
+            var movie = _context.Movies
+                .Include(m => m.CategoryName).ToList();
+                //.OrderBy(x => x.Title).ToList();
+
+            return View(movie);
         }
     }
 }
