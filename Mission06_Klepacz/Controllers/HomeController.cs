@@ -43,11 +43,51 @@ namespace Mission06_Klepacz.Controllers
 
         public IActionResult MovieList()
         {
+            //Alphabetize added movies automatically
             var movie = _context.Movies
-                .Include(m => m.CategoryName).ToList();
-                //.OrderBy(x => x.Title).ToList();
+                .Include(m => m.CategoryName)
+                .OrderBy(x => x.Title).ToList();
 
             return View(movie);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var editRecord = _context.Movies
+                .Single(x => x.MovieId == id);
+
+            ViewBag.Categories = _context.Categories
+                .ToList();
+
+            return View("AddFilm", editRecord);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AddMovie updatedMovie)
+        {
+            _context.Update(updatedMovie);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var toDelete = _context.Movies
+                .Single(x => x.MovieId == id);
+
+            return View(toDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(AddMovie movieToDelete)
+        {
+            _context.Movies.Remove(movieToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("MovieList");
         }
     }
 }

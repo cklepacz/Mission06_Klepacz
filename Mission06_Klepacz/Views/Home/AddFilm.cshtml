@@ -9,6 +9,9 @@
     <br />
 
     <form method="post">
+
+        <input type="hidden" asp-for="MovieId" />
+
         <select asp-for="CategoryId">
             <option value="">Select a Category</option>
             @foreach (Category c in ViewBag.Categories)
