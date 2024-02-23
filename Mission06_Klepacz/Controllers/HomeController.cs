@@ -29,16 +29,27 @@ namespace Mission06_Klepacz.Controllers
             ViewBag.Categories = _context.Categories
                 .ToList();
             
-            return View();
+            return View("AddFilm", new AddMovie());
         }
 
         [HttpPost]
         public IActionResult AddFilm(AddMovie response)
         {
-            _context.Movies.Add(response);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(response); //Add movie to the database
+                _context.SaveChanges();
 
-            return View("Confirmation", response);
+                return View("Confirmation", response);
+            }
+            else //invalid response
+            {
+                ViewBag.Categories = _context.Categories
+                    .ToList();
+
+                return View(response);
+            }
+
         }
 
         public IActionResult MovieList()
